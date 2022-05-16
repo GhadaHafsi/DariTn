@@ -10,6 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PanierRepository extends JpaRepository<Panier, Long> {
 
-
     public Optional<Panier> findByUserID(Long userId);    
 }

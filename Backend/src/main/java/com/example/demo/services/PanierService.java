@@ -1,11 +1,15 @@
 package com.example.demo.services;
 
+import java.io.Console;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.example.demo.dto.PanierDTO;
 import com.example.demo.entities.Furniture;
 import com.example.demo.entities.Panier;
+import com.example.demo.repositories.FurnitureRepository;
 import com.example.demo.repositories.PanierRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,9 @@ public class PanierService {
     @Autowired
     PanierRepository panierRepository;
 
+    @Autowired
+    FurnitureRepository furnitureRepository;
+
     public PanierService(PanierRepository panierRepository) {
         this.panierRepository = panierRepository;
     } 
@@ -23,7 +30,6 @@ public class PanierService {
     public Panier save(PanierDTO panierDTO) {
         Panier panier = Panier.builder()
                 .totalPanier(panierDTO.getTotalPanier())
-                .userID(panierDTO.getUserID())
                 .furnitures(panierDTO.getFurnitures()).build();
 
         return panierRepository.save(panier);
@@ -53,12 +59,14 @@ public class PanierService {
     }
 
     public Panier retrievePanierByUserId(Long userId){
-        return panierRepository.findByUserID(userId).orElseThrow(() -> new RuntimeException("Cannot find panier with user id"+userId));
+        return panierRepository.findByUserID(userId).orElseThrow(() -> new RuntimeException("Cannot find cart with user id"+userId));
     }
 
     public void deleteFurnitureFromPanier(Long idFurniture, Long panierId) {
+        
         Panier panier = panierRepository.getById(panierId);
-       // Set<Furniture> furnitureList = panier.getFurnitures();
-
+        Furniture furniture = furnitureRepository.getById(idFurniture);
+        System.out.println(furniture.getDescription());
+        panier.getFurnitures().remove(furniture);
     }
 }

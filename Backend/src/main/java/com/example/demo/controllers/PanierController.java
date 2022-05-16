@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.java.Log;
+
 @CrossOrigin(origins =  "http://localhost:4200")
 @RestController
 @RequestMapping("/api/panier")
@@ -46,10 +48,9 @@ public class PanierController {
     public ResponseEntity<Panier> createNewPanier(@RequestBody PanierDTO panierDTO) {
 
         long userId = 1;
-
         try {
                Panier panier = panierService.save(panierDTO);
-                //panier.setTotalPanier(panier.getFurnitures().);
+                panier.setUserID(userId);
                 return new ResponseEntity<>(panier, HttpStatus.CREATED);
 
         } catch (RuntimeException ex) {
@@ -109,11 +110,9 @@ public class PanierController {
     }
 
     @DeleteMapping("/panier/delete-furniture-panier/{panier-id}/{furniture-id}")
-    public ResponseEntity<String> deleteFurnitureFromPanier(@PathVariable("panier-id") Long panierId, @PathVariable("furniture-id") Long furnitureId) {
-        Panier panier = panierService.retrievePanierById(panierId);
-        Set<Furniture> furnitureList = panier.getFurnitures();
-        
-        return new ResponseEntity<>("The Furniture was succesfully deleted from basket", HttpStatus.OK);
+    public ResponseEntity<String> deleteFurnitureFromPanier(@PathVariable("panier-id") Long panierId, @PathVariable("furniture-id") Long idFurniture) {
+        panierService.deleteFurnitureFromPanier(idFurniture, panierId);
+        return new ResponseEntity<>("Furniture successfully deleted from cart.", HttpStatus.OK);
     }
 
     @PutMapping("/update-panier")

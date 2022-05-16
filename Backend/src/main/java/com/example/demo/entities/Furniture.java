@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -70,5 +71,6 @@ public class Furniture implements Serializable {
     @NotNull
     private String furnitureTitle;
 
-    private Long userId;
+    @Column(updatable = false)
+    private long userID;
 }

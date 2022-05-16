@@ -9,7 +9,6 @@ import com.example.demo.entities.Furniture;
 import com.example.demo.repositories.FileSystemRepository;
 import com.example.demo.repositories.FurnitureRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,14 +26,14 @@ public class FurnitureService {
     }
 
     public Furniture save(FurnitureDTO furnitureDTO) throws IOException, Exception {
-
+        long userId = 1;
         Furniture furniture = Furniture.builder()
                 .price(furnitureDTO.getPrice())
                 .description(furnitureDTO.getDescription())
                 .width(furnitureDTO.getWidth())
                 .length(furnitureDTO.getLength()).furnitureType(furnitureDTO.getFurnitureType())            
                 .furnitureTitle(furnitureDTO.getFurnitureTitle())
-                .userId(Long.valueOf(1)).build();
+                .userID(userId) .build();
        Furniture furnitureSaved = furnitureRepository.save(furniture);
        if(furnitureDTO.getImage() != null)
        uploadFurnitureImage(furnitureSaved.getIdFurniture(), furnitureDTO.getImage());

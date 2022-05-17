@@ -12,7 +12,7 @@ public class FurnitureServiceTests {
     @Autowired
     private FurnitureService furnitureService;
 
-    @Test
+   /* @Test
     void furnitureShouldBePersisted() {
         /*BigDecimal price = new BigDecimal("34.12");
         FurnitureDTO furnitureDTO = FurnitureDTO.builder().price(price).width(2.6).length(8.2)
@@ -20,20 +20,20 @@ public class FurnitureServiceTests {
                 .furnitureType(FurnitureType.BED)
                 .imageURL("url").build();
 
-        assertNotNull(furnitureService.save(furnitureDTO));*/
+        assertNotNull(furnitureService.save(furnitureDTO));
 
     }
 
     @Test
     void furnitureShouldBeUpdated() {
-        /*BigDecimal price = new BigDecimal("34.12");
+        BigDecimal price = new BigDecimal("34.12");
         FurnitureDTO furnitureDTO = FurnitureDTO.builder().price(price).width(3.6).length(9.2)
                 .description("A good confortable bed")
                 .furnitureType(FurnitureType.BED)
                 .imageURL("urldeimage").build();
         Furniture furniture = furnitureService.save(furnitureDTO);
         furniture.setDescription("A not Confortable bed");
-        assertEquals("A not Confortable bed", furnitureService.updateFurniture(furniture).getDescription());*/
+        assertEquals("A not Confortable bed", furnitureService.updateFurniture(furniture).getDescription());
     }
 
     @Test
@@ -46,7 +46,7 @@ public class FurnitureServiceTests {
         Furniture furniture = furnitureService.save(furnitureDTO);
         furnitureService.deleteFurniture(furniture.getIdFurniture());
 
-        assertEquals(null, furnitureService.retrieveFurnitureById(furniture.getIdFurniture()));*/
+        assertEquals(null, furnitureService.retrieveFurnitureById(furniture.getIdFurniture()));
 
     }
 
@@ -60,8 +60,8 @@ public class FurnitureServiceTests {
 
         furnitureService.save(furnitureDTO);
 
-        assertFalse(furnitureService.retrieveAllFurniture().isEmpty());*/
+        assertFalse(furnitureService.retrieveAllFurniture().isEmpty());
 
-    }
+    }*/
 
 }

@@ -13,7 +13,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class FurnitureControllerTest {
 
-    TestRestTemplate restTemplate;
+    /*TestRestTemplate restTemplate;
     URL base;
     @LocalServerPort
     int port;
@@ -35,7 +35,7 @@ public class FurnitureControllerTest {
                 base.toString() + "/api/furniture/create-new-furniture",
                 furnitureDTO,
                 String.class);
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());*/
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
 
     @Test
@@ -49,8 +49,8 @@ public class FurnitureControllerTest {
                 base.toString() + "/api/furniture/create-new-furniture",
                 furnitureDTO,
                 String.class);
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());*/
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
 
-    }
+    }*/
 
 }
